@@ -12,6 +12,7 @@ Personal learning project for understanding core machine learning algorithms, wi
 | Linear Regression | ✅ Complete | `linear_regression.py` | Gradient descent, optimization fundamentals |
 | Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
 | Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
+| CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
 
 ---
 
@@ -125,6 +126,37 @@ Backward: dz2 = a2 - y
 
 **What I implemented:** `forward()` (full forward pass) + `backward()` (backpropagation with chain rule)
 
+### 6. CNN Image Classifier (PyTorch)
+**Question it answers:** "How do I classify images with deep learning?"
+
+**Architecture (LeNet-style):**
+```
+Input (1, 28, 28)
+→ Conv2d(1→6, 5x5) → ReLU → MaxPool(2x2)
+→ Conv2d(6→16, 5x5) → ReLU → MaxPool(2x2)
+→ Flatten → Linear(256→120) → ReLU
+→ Linear(120→84) → ReLU → Linear(84→10)
+```
+
+**PyTorch training loop:**
+```python
+optimizer.zero_grad()      # Clear old gradients
+outputs = model(inputs)    # Forward pass
+loss = criterion(outputs, labels)
+loss.backward()            # Backward pass (autograd!)
+optimizer.step()           # Update weights
+```
+
+**Key insights:**
+- `nn.Sequential` chains layers — activations (ReLU) must be included as layers too
+- `loss.backward()` replaces your manual backprop — autograd handles the chain rule
+- `optimizer.step()` replaces `W -= lr * dW` — with momentum, Adam, etc. built in
+- `DataLoader` handles batching and shuffling automatically
+- `torch.no_grad()` disables gradient tracking for evaluation (saves memory)
+- Always preserve batch dimension when reshaping: `x.flatten(start_dim=1)` not `x.flatten()`
+
+**What I implemented:** Full pipeline — `LeNet` class (with `nn.Sequential`), `get_data_loaders()`, `train_one_epoch()`, `evaluate()`
+
 ---
 
 ## Running the Code
@@ -149,19 +181,22 @@ uv run python image_convolution.py  # Animated kernel + filter comparison!
 
 # Run Neural Network demo
 uv run python neural_network.py     # Watch decision boundary learn XOR!
+
+# Run CNN demo (PyTorch)
+uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
 ```
 
 ---
 
 ## Learning Plan: What's Next
 
-### Phase 2: Computer Vision Fundamentals
-1. **Image Convolutions & Filters** — Edge detection, blurring from scratch, then OpenCV
+### Phase 2: Computer Vision Fundamentals ✅
+1. ~~**Image Convolutions & Filters**~~ — ✅ Complete
 2. **Feature Detection** — Harris corners, intro to SIFT/ORB
-3. **Neural Network from Scratch** — MLP with backpropagation
+3. ~~**Neural Network from Scratch**~~ — ✅ Complete
 
-### Phase 3: Deep Learning for Vision
-4. **CNN for Image Classification** — PyTorch, robotics-relevant dataset
+### Phase 3: Deep Learning for Vision (in progress)
+4. ~~**CNN for Image Classification**~~ — ✅ Complete (LeNet on MNIST)
 5. **Object Detection** — YOLO/SSD concepts
 
 ### Phase 4: Advanced Robotics ML
@@ -192,6 +227,8 @@ uv run python neural_network.py     # Watch decision boundary learn XOR!
 
 - `numpy` — Matrix operations, numerical computing
 - `matplotlib` — Visualization and animation
+- `torch` — Deep learning framework (Phase 3+)
+- `torchvision` — Datasets and transforms for computer vision
 
 Managed with `uv`. See `pyproject.toml` for details.
 
