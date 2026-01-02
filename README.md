@@ -9,8 +9,8 @@ Personal learning project for understanding core machine learning algorithms, wi
 | 1D Kalman Filter | ✅ Complete | `kalman_filter.py` | State estimation, predict-update cycle |
 | 2D Kalman Filter | ✅ Complete | `kalman_filter_2d.py` | Matrix formulation, estimating hidden state (velocity) |
 | Q-Learning | ✅ Complete | `q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
-| Linear Regression | ⬜ Planned | — | Gradient descent, optimization fundamentals |
-| Image Convolutions | ⬜ Planned | — | Filters, edge detection, CNN foundations |
+| Linear Regression | ✅ Complete | `linear_regression.py` | Gradient descent, optimization fundamentals |
+| Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
 | Neural Network (MLP) | ⬜ Planned | — | Backpropagation from scratch |
 
 ---
@@ -57,6 +57,45 @@ Q(s,a) = Q(s,a) + α * (reward + γ * max(Q(s',:)) - Q(s,a))
 
 **What I implemented:** The `choose_action()` method (ε-greedy action selection)
 
+### 3. Linear Regression (Optimization Fundamentals)
+**Question it answers:** "How do I find the best parameters to fit my data?"
+
+**Key equations:**
+```
+Model:    ŷ = X @ W + b
+Loss:     L = (1/n) * Σ(ŷ - y)²
+Gradient: dW = (2/n) * X.T @ (ŷ - y)    db = (2/n) * Σ(ŷ - y)
+Update:   W = W - α * dW                 b = b - α * db
+```
+
+**Key insights:**
+- MSE loss measures "how wrong" — gradient tells you "which direction is worse"
+- `X.T @ error` computes how much each feature contributed to the error
+- Learning rate (α) controls step size: too big = overshoot, too small = slow
+- This exact loop (forward → loss → gradient → update) is how ALL neural networks train
+- Foundation for backpropagation, PyTorch optimizers, deep learning
+
+**What I implemented:** The full `fit()` method — gradient descent training loop
+
+### 4. Image Convolutions (Computer Vision Fundamentals)
+**Question it answers:** "How do I detect features in images?"
+
+**Key operation:**
+```
+output[i,j] = Σ Σ image[i+m, j+n] * kernel[m, n]
+              m n
+```
+
+**Key insights:**
+- Convolution slides a kernel across an image, computing weighted sums
+- Sobel X detects vertical edges, Sobel Y detects horizontal edges
+- Gradient magnitude `√(Gx² + Gy²)` captures edges at any orientation
+- Different kernels = different features (edges, blur, sharpen)
+- CNNs learn kernels through backprop instead of hand-designing them
+- Foundation for all deep learning in computer vision
+
+**What I implemented:** `convolve2d()` (sliding window operation) + `detect_edges()` (Sobel gradient magnitude)
+
 ---
 
 ## Running the Code
@@ -72,6 +111,12 @@ uv run python kalman_filter_2d.py   # 2D: velocity estimation
 
 # Run Q-Learning demo
 uv run python q_learning.py         # Watch robot learn to navigate!
+
+# Run Linear Regression demo
+uv run python linear_regression.py  # Watch gradient descent fit a line!
+
+# Run Image Convolution demo
+uv run python image_convolution.py  # Animated kernel + filter comparison!
 ```
 
 ---

@@ -27,10 +27,10 @@ See `README.md` for detailed progress. Completed so far:
 - ✅ 1D Kalman Filter (learner implemented: update step)
 - ✅ 2D Kalman Filter (learner implemented: predict step)
 - ✅ Q-Learning (learner implemented: ε-greedy action selection)
+- ✅ Linear Regression (learner implemented: full gradient descent training loop)
+- ✅ Image Convolutions (learner implemented: convolve2d + edge detection)
 
 ## What's Next (Phase 2)
-- Linear Regression with Gradient Descent
-- Image Convolutions & Filters
 - Neural Network from scratch (MLP with backpropagation)
 
 ## Environment
