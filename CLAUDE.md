@@ -29,9 +29,11 @@ See `README.md` for detailed progress. Completed so far:
 - ✅ Q-Learning (learner implemented: ε-greedy action selection)
 - ✅ Linear Regression (learner implemented: full gradient descent training loop)
 - ✅ Image Convolutions (learner implemented: convolve2d + edge detection)
+- ✅ Neural Network MLP (learner implemented: forward pass + backpropagation)
 
-## What's Next (Phase 2)
-- Neural Network from scratch (MLP with backpropagation)
+## What's Next (Phase 3: Deep Learning for Vision)
+- CNN for Image Classification (PyTorch)
+- Object Detection concepts (YOLO/SSD)
 
 ## Environment
 - Python managed with `uv`

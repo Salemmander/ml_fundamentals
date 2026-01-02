@@ -11,7 +11,7 @@ Personal learning project for understanding core machine learning algorithms, wi
 | Q-Learning | ✅ Complete | `q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
 | Linear Regression | ✅ Complete | `linear_regression.py` | Gradient descent, optimization fundamentals |
 | Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
-| Neural Network (MLP) | ⬜ Planned | — | Backpropagation from scratch |
+| Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
 
 ---
 
@@ -96,6 +96,35 @@ output[i,j] = Σ Σ image[i+m, j+n] * kernel[m, n]
 
 **What I implemented:** `convolve2d()` (sliding window operation) + `detect_edges()` (Sobel gradient magnitude)
 
+### 5. Neural Network / MLP (Deep Learning Fundamentals)
+**Question it answers:** "How do neural networks learn?"
+
+**Architecture:**
+```
+Input (2) → Hidden (4, ReLU) → Output (1, Sigmoid)
+```
+
+**Key equations:**
+```
+Forward:  z1 = X @ W1 + b1,  a1 = relu(z1)
+          z2 = a1 @ W2 + b2, a2 = sigmoid(z2)
+
+Backward: dz2 = a2 - y
+          dW2 = a1.T @ dz2,  da1 = dz2 @ W2.T
+          dz1 = da1 * (z1 > 0),  dW1 = X.T @ dz1
+          W = W - lr * dW  (for all weights)
+```
+
+**Key insights:**
+- Forward pass: data flows input → output through matrix multiplies + activations
+- Backward pass (backprop): gradients flow output → input via chain rule
+- ReLU introduces non-linearity (without it, stacked layers = just one linear layer)
+- Sigmoid squashes output to probability (0,1) for classification
+- XOR proves the hidden layer learns useful representations (linear classifiers fail)
+- This is exactly how PyTorch/TensorFlow work under the hood
+
+**What I implemented:** `forward()` (full forward pass) + `backward()` (backpropagation with chain rule)
+
 ---
 
 ## Running the Code
@@ -117,6 +146,9 @@ uv run python linear_regression.py  # Watch gradient descent fit a line!
 
 # Run Image Convolution demo
 uv run python image_convolution.py  # Animated kernel + filter comparison!
+
+# Run Neural Network demo
+uv run python neural_network.py     # Watch decision boundary learn XOR!
 ```
 
 ---
