@@ -13,6 +13,7 @@ Personal learning project for understanding core machine learning algorithms, wi
 | Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
 | Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
 | CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
+| Feature Detection | ✅ Complete | `feature_detection.py` | Harris corners, SIFT/ORB intro |
 
 ---
 
@@ -157,6 +158,33 @@ optimizer.step()           # Update weights
 
 **What I implemented:** Full pipeline — `LeNet` class (with `nn.Sequential`), `get_data_loaders()`, `train_one_epoch()`, `evaluate()`
 
+### 7. Feature Detection (Harris Corners)
+**Question it answers:** "Where are the trackable points in this image?"
+
+**Structure Tensor M:**
+```
+M = [ Σ(Ix²)   Σ(Ix·Iy) ]    (Ix, Iy from Sobel gradients)
+    [ Σ(Ix·Iy) Σ(Iy²)   ]
+```
+
+**Corner Response:**
+```
+R = det(M) - k * trace(M)²
+R = λ1·λ2 - k*(λ1 + λ2)²
+```
+- R > 0 (large): Corner — both eigenvalues large
+- R < 0 (large): Edge — one eigenvalue dominates
+- R ≈ 0: Flat region — both eigenvalues small
+
+**Key insights:**
+- Corners are uniquely identifiable in ALL directions (edges are ambiguous along their length)
+- Harris reuses Sobel gradients — builds directly on convolution work
+- "Valid" convolution shrinks output — must track coordinate offsets when overlaying results
+- SIFT/ORB add scale invariance and descriptors for matching between images
+- Feature detection → matching → motion estimation → SLAM (Phase 4)
+
+**What I implemented:** `harris_response()` — structure tensor computation and corner response formula
+
 ---
 
 ## Running the Code
@@ -184,6 +212,9 @@ uv run python neural_network.py     # Watch decision boundary learn XOR!
 
 # Run CNN demo (PyTorch)
 uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
+
+# Run Feature Detection demo
+uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
 ```
 
 ---
@@ -192,7 +223,7 @@ uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
 
 ### Phase 2: Computer Vision Fundamentals ✅
 1. ~~**Image Convolutions & Filters**~~ — ✅ Complete
-2. **Feature Detection** — Harris corners, intro to SIFT/ORB
+2. ~~**Feature Detection**~~ — ✅ Complete (Harris corners, SIFT/ORB)
 3. ~~**Neural Network from Scratch**~~ — ✅ Complete
 
 ### Phase 3: Deep Learning for Vision (in progress)
@@ -227,6 +258,7 @@ uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
 
 - `numpy` — Matrix operations, numerical computing
 - `matplotlib` — Visualization and animation
+- `opencv-python` — SIFT/ORB feature detection and matching
 - `torch` — Deep learning framework (Phase 3+)
 - `torchvision` — Datasets and transforms for computer vision
 
