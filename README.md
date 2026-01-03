@@ -14,6 +14,7 @@ Personal learning project for understanding core machine learning algorithms, wi
 | Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
 | CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
 | Feature Detection | ✅ Complete | `feature_detection.py` | Harris corners, SIFT/ORB intro |
+| Object Detection Concepts | ✅ Complete | `object_detection_concepts.py` | Anchors, IoU, NMS |
 
 ---
 
@@ -185,6 +186,33 @@ R = λ1·λ2 - k*(λ1 + λ2)²
 
 **What I implemented:** `harris_response()` — structure tensor computation and corner response formula
 
+### 8. Object Detection Concepts
+**Question it answers:** "How do detectors find and localize objects?"
+
+**Core Components:**
+```
+Anchor Boxes: Pre-defined boxes at multiple scales/aspect ratios
+IoU: Intersection over Union = Area(A ∩ B) / Area(A ∪ B)
+NMS: Non-Maximum Suppression — keep best, remove overlapping duplicates
+```
+
+**NMS Algorithm:**
+```
+1. Sort boxes by confidence (highest first)
+2. Keep highest-scoring box
+3. Remove all boxes with IoU > threshold
+4. Repeat until no boxes remain
+```
+
+**Key insights:**
+- Anchors avoid sliding window — predict offsets from fixed positions instead
+- IoU uses min/max for intersection: `max` for start coords, `min` for end coords
+- Batch IoU uses broadcasting: reshape `(N,4)` and `(M,4)` to `(N,1,4)` and `(1,M,4)`
+- Integer indexing drops dimensions, slice indexing keeps them: `arr[i]` vs `arr[i:i+1]`
+- NMS threshold is a precision/recall tradeoff (0.3 aggressive, 0.5 balanced)
+
+**What I implemented:** `generate_anchors()`, `compute_iou()`, `compute_iou_batch()`, `non_maximum_suppression()`
+
 ---
 
 ## Running the Code
@@ -215,6 +243,9 @@ uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
 
 # Run Feature Detection demo
 uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
+
+# Run Object Detection Concepts demo
+uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
 ```
 
 ---
@@ -226,9 +257,9 @@ uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
 2. ~~**Feature Detection**~~ — ✅ Complete (Harris corners, SIFT/ORB)
 3. ~~**Neural Network from Scratch**~~ — ✅ Complete
 
-### Phase 3: Deep Learning for Vision (in progress)
+### Phase 3: Deep Learning for Vision ✅
 4. ~~**CNN for Image Classification**~~ — ✅ Complete (LeNet on MNIST)
-5. **Object Detection** — YOLO/SSD concepts
+5. ~~**Object Detection**~~ — ✅ Complete (Anchors, IoU, NMS)
 
 ### Phase 4: Advanced Robotics ML
 6. **Deep Reinforcement Learning** — DQN, Policy Gradients, PyBullet/MuJoCo
