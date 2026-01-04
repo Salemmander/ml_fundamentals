@@ -847,8 +847,8 @@ def full_pipeline_demo() -> None:
 
     fig.suptitle("Object Detection Post-Processing Pipeline", fontsize=14)
     plt.tight_layout()
-    plt.savefig("detection_pipeline.png", dpi=150, bbox_inches="tight")
-    print("Saved: detection_pipeline.png")
+    plt.savefig("output/detection_pipeline.png", dpi=150, bbox_inches="tight")
+    print("Saved: output/detection_pipeline.png")
     plt.show()
 
 
@@ -958,8 +958,8 @@ def run_detection_concepts_demo() -> None:
     print("PART 1: Anchor Box Visualization")
     print("-" * 40)
     visualize_anchors()
-    plt.savefig("anchor_grid.png", dpi=150, bbox_inches="tight")
-    print("Saved: anchor_grid.png")
+    plt.savefig("output/anchor_grid.png", dpi=150, bbox_inches="tight")
+    print("Saved: output/anchor_grid.png")
     plt.show()
 
     input("\nPress Enter to continue to IoU visualization...")
@@ -968,8 +968,8 @@ def run_detection_concepts_demo() -> None:
     print("\nPART 2: IoU Visualization")
     print("-" * 40)
     visualize_iou()
-    plt.savefig("iou_visualization.png", dpi=150, bbox_inches="tight")
-    print("Saved: iou_visualization.png")
+    plt.savefig("output/iou_visualization.png", dpi=150, bbox_inches="tight")
+    print("Saved: output/iou_visualization.png")
     plt.show()
 
     input("\nPress Enter to continue to NMS animation...")

@@ -374,10 +374,7 @@ def run_filter_demo(animate: bool = True, delay: float = 0.2):
     print(f"Final true velocity:     {true_velocities[-1]:.3f} m/s")
     print("=" * 70)
 
-    plt.savefig(
-        "/home/salem/Documents/Projects/Learning/ml_fundamentals/kalman_2d_demo.png",
-        dpi=150,
-    )
+    plt.savefig("output/kalman_2d_demo.png", dpi=150)
     print("\nClose the plot window to exit.")
     plt.show()
 

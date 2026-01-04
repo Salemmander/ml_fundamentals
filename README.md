@@ -6,37 +6,41 @@ Personal learning project for understanding core machine learning algorithms, wi
 
 | Algorithm | Status | File | Key Concept |
 |-----------|--------|------|-------------|
-| 1D Kalman Filter | ✅ Complete | `kalman_filter.py` | State estimation, predict-update cycle |
-| 2D Kalman Filter | ✅ Complete | `kalman_filter_2d.py` | Matrix formulation, estimating hidden state (velocity) |
-| Q-Learning | ✅ Complete | `q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
-| Linear Regression | ✅ Complete | `linear_regression.py` | Gradient descent, optimization fundamentals |
-| Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
-| Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
-| CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
-| Feature Detection | ✅ Complete | `feature_detection.py` | Harris corners, SIFT/ORB intro |
-| Object Detection Concepts | ✅ Complete | `object_detection_concepts.py` | Anchors, IoU, NMS |
-| DQN (Deep Q-Network) | ✅ Complete | `dqn_cartpole.py` | Function approximation, replay buffer, target network |
+| 1D Kalman Filter | ✅ Complete | `phase1_fundamentals/kalman_filter.py` | State estimation, predict-update cycle |
+| 2D Kalman Filter | ✅ Complete | `phase1_fundamentals/kalman_filter_2d.py` | Matrix formulation, estimating hidden state (velocity) |
+| Q-Learning | ✅ Complete | `phase1_fundamentals/q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
+| Linear Regression | ✅ Complete | `phase1_fundamentals/linear_regression.py` | Gradient descent, optimization fundamentals |
+| Image Convolutions | ✅ Complete | `phase2_vision/image_convolution.py` | Filters, edge detection, CNN foundations |
+| Neural Network (MLP) | ✅ Complete | `phase2_vision/neural_network.py` | Backpropagation from scratch |
+| CNN Image Classifier | ✅ Complete | `phase3_deep_learning/cnn_classifier.py` | PyTorch, LeNet on MNIST |
+| Feature Detection | ✅ Complete | `phase2_vision/feature_detection.py` | Harris corners, SIFT/ORB intro |
+| Object Detection Concepts | ✅ Complete | `phase3_deep_learning/object_detection_concepts.py` | Anchors, IoU, NMS |
+| DQN (Deep Q-Network) | ✅ Complete | `phase4_robotics_ml/dqn_cartpole.py` | Function approximation, replay buffer, target network |
 
 ---
 
 ## What I Learned
 
 ### 1. Kalman Filter (State Estimation)
+
 **Question it answers:** "Where am I, given noisy sensors?"
 
 **Key equations (1D):**
+
 ```
 Predict:  x = x + v*dt       P = P + Q
 Update:   K = P/(P+R)        x = x + K*(z-x)        P = (1-K)*P
 ```
 
 **Key equations (2D matrix form):**
+
 ```
 Predict:  x = F @ x          P = F @ P @ F.T + Q
 Update:   K = P @ H.T @ inv(S)   x = x + K @ y    P = (I - K@H) @ P
 ```
 
 **Key insights:**
+
 - Kalman Gain (K) balances trust between prediction and measurement
 - Uncertainty grows during prediction, shrinks during update
 - 2D filter can estimate velocity from position-only measurements!
@@ -45,14 +49,17 @@ Update:   K = P @ H.T @ inv(S)   x = x + K @ y    P = (I - K@H) @ P
 **What I implemented:** The `update()` step in 1D, the `predict()` step in 2D
 
 ### 2. Q-Learning (Reinforcement Learning)
+
 **Question it answers:** "What action should I take?"
 
 **Key equation (Bellman update):**
+
 ```
 Q(s,a) = Q(s,a) + α * (reward + γ * max(Q(s',:)) - Q(s,a))
 ```
 
 **Key insights:**
+
 - Q-table maps (state, action) → expected future reward
 - ε-greedy balances exploration vs exploitation
 - Values propagate backward from goal through repeated experience
@@ -62,9 +69,11 @@ Q(s,a) = Q(s,a) + α * (reward + γ * max(Q(s',:)) - Q(s,a))
 **What I implemented:** The `choose_action()` method (ε-greedy action selection)
 
 ### 3. Linear Regression (Optimization Fundamentals)
+
 **Question it answers:** "How do I find the best parameters to fit my data?"
 
 **Key equations:**
+
 ```
 Model:    ŷ = X @ W + b
 Loss:     L = (1/n) * Σ(ŷ - y)²
@@ -73,6 +82,7 @@ Update:   W = W - α * dW                 b = b - α * db
 ```
 
 **Key insights:**
+
 - MSE loss measures "how wrong" — gradient tells you "which direction is worse"
 - `X.T @ error` computes how much each feature contributed to the error
 - Learning rate (α) controls step size: too big = overshoot, too small = slow
@@ -82,15 +92,18 @@ Update:   W = W - α * dW                 b = b - α * db
 **What I implemented:** The full `fit()` method — gradient descent training loop
 
 ### 4. Image Convolutions (Computer Vision Fundamentals)
+
 **Question it answers:** "How do I detect features in images?"
 
 **Key operation:**
+
 ```
 output[i,j] = Σ Σ image[i+m, j+n] * kernel[m, n]
               m n
 ```
 
 **Key insights:**
+
 - Convolution slides a kernel across an image, computing weighted sums
 - Sobel X detects vertical edges, Sobel Y detects horizontal edges
 - Gradient magnitude `√(Gx² + Gy²)` captures edges at any orientation
@@ -101,14 +114,17 @@ output[i,j] = Σ Σ image[i+m, j+n] * kernel[m, n]
 **What I implemented:** `convolve2d()` (sliding window operation) + `detect_edges()` (Sobel gradient magnitude)
 
 ### 5. Neural Network / MLP (Deep Learning Fundamentals)
+
 **Question it answers:** "How do neural networks learn?"
 
 **Architecture:**
+
 ```
 Input (2) → Hidden (4, ReLU) → Output (1, Sigmoid)
 ```
 
 **Key equations:**
+
 ```
 Forward:  z1 = X @ W1 + b1,  a1 = relu(z1)
           z2 = a1 @ W2 + b2, a2 = sigmoid(z2)
@@ -120,6 +136,7 @@ Backward: dz2 = a2 - y
 ```
 
 **Key insights:**
+
 - Forward pass: data flows input → output through matrix multiplies + activations
 - Backward pass (backprop): gradients flow output → input via chain rule
 - ReLU introduces non-linearity (without it, stacked layers = just one linear layer)
@@ -130,9 +147,11 @@ Backward: dz2 = a2 - y
 **What I implemented:** `forward()` (full forward pass) + `backward()` (backpropagation with chain rule)
 
 ### 6. CNN Image Classifier (PyTorch)
+
 **Question it answers:** "How do I classify images with deep learning?"
 
 **Architecture (LeNet-style):**
+
 ```
 Input (1, 28, 28)
 → Conv2d(1→6, 5x5) → ReLU → MaxPool(2x2)
@@ -142,6 +161,7 @@ Input (1, 28, 28)
 ```
 
 **PyTorch training loop:**
+
 ```python
 optimizer.zero_grad()      # Clear old gradients
 outputs = model(inputs)    # Forward pass
@@ -151,6 +171,7 @@ optimizer.step()           # Update weights
 ```
 
 **Key insights:**
+
 - `nn.Sequential` chains layers — activations (ReLU) must be included as layers too
 - `loss.backward()` replaces your manual backprop — autograd handles the chain rule
 - `optimizer.step()` replaces `W -= lr * dW` — with momentum, Adam, etc. built in
@@ -161,24 +182,29 @@ optimizer.step()           # Update weights
 **What I implemented:** Full pipeline — `LeNet` class (with `nn.Sequential`), `get_data_loaders()`, `train_one_epoch()`, `evaluate()`
 
 ### 7. Feature Detection (Harris Corners)
+
 **Question it answers:** "Where are the trackable points in this image?"
 
 **Structure Tensor M:**
+
 ```
 M = [ Σ(Ix²)   Σ(Ix·Iy) ]    (Ix, Iy from Sobel gradients)
     [ Σ(Ix·Iy) Σ(Iy²)   ]
 ```
 
 **Corner Response:**
+
 ```
 R = det(M) - k * trace(M)²
 R = λ1·λ2 - k*(λ1 + λ2)²
 ```
+
 - R > 0 (large): Corner — both eigenvalues large
 - R < 0 (large): Edge — one eigenvalue dominates
 - R ≈ 0: Flat region — both eigenvalues small
 
 **Key insights:**
+
 - Corners are uniquely identifiable in ALL directions (edges are ambiguous along their length)
 - Harris reuses Sobel gradients — builds directly on convolution work
 - "Valid" convolution shrinks output — must track coordinate offsets when overlaying results
@@ -188,9 +214,11 @@ R = λ1·λ2 - k*(λ1 + λ2)²
 **What I implemented:** `harris_response()` — structure tensor computation and corner response formula
 
 ### 8. Object Detection Concepts
+
 **Question it answers:** "How do detectors find and localize objects?"
 
 **Core Components:**
+
 ```
 Anchor Boxes: Pre-defined boxes at multiple scales/aspect ratios
 IoU: Intersection over Union = Area(A ∩ B) / Area(A ∪ B)
@@ -198,6 +226,7 @@ NMS: Non-Maximum Suppression — keep best, remove overlapping duplicates
 ```
 
 **NMS Algorithm:**
+
 ```
 1. Sort boxes by confidence (highest first)
 2. Keep highest-scoring box
@@ -206,6 +235,7 @@ NMS: Non-Maximum Suppression — keep best, remove overlapping duplicates
 ```
 
 **Key insights:**
+
 - Anchors avoid sliding window — predict offsets from fixed positions instead
 - IoU uses min/max for intersection: `max` for start coords, `min` for end coords
 - Batch IoU uses broadcasting: reshape `(N,4)` and `(M,4)` to `(N,1,4)` and `(1,M,4)`
@@ -215,15 +245,18 @@ NMS: Non-Maximum Suppression — keep best, remove overlapping duplicates
 **What I implemented:** `generate_anchors()`, `compute_iou()`, `compute_iou_batch()`, `non_maximum_suppression()`
 
 ### 9. DQN — Deep Q-Network (Deep Reinforcement Learning)
+
 **Question it answers:** "How do I learn to act in continuous state spaces?"
 
 **Key difference from Q-Learning:**
+
 ```
 Q-Learning: Q-table[state, action] → value lookup
 DQN:        Neural network(state) → Q-values for all actions
 ```
 
 **Core components:**
+
 ```
 Replay Buffer: Store (s, a, r, s', done), sample random batches
 Target Network: Slowly-updated copy for stable TD targets
@@ -231,6 +264,7 @@ TD Loss: MSE(Q(s,a), r + γ * max Q_target(s'))
 ```
 
 **Key insights:**
+
 - Neural networks enable RL on continuous/high-dimensional states
 - Experience replay breaks correlation between consecutive samples
 - Target network prevents "moving target" instability
@@ -248,33 +282,23 @@ TD Loss: MSE(Q(s,a), r + γ * max Q_target(s'))
 cd ml_fundamentals
 uv sync  # Install dependencies from pyproject.toml
 
-# Run Kalman Filter demos
-uv run python kalman_filter.py      # 1D: animated position tracking
-uv run python kalman_filter_2d.py   # 2D: velocity estimation
+# Phase 1: Fundamentals
+uv run python phase1_fundamentals/kalman_filter.py      # 1D Kalman Filter
+uv run python phase1_fundamentals/kalman_filter_2d.py   # 2D velocity estimation
+uv run python phase1_fundamentals/q_learning.py         # Q-Learning GridWorld
+uv run python phase1_fundamentals/linear_regression.py  # Gradient descent
 
-# Run Q-Learning demo
-uv run python q_learning.py         # Watch robot learn to navigate!
+# Phase 2: Computer Vision
+uv run python phase2_vision/image_convolution.py   # Convolution + edge detection
+uv run python phase2_vision/neural_network.py      # MLP from scratch (XOR)
+uv run python phase2_vision/feature_detection.py   # Harris + SIFT/ORB
 
-# Run Linear Regression demo
-uv run python linear_regression.py  # Watch gradient descent fit a line!
+# Phase 3: Deep Learning
+uv run python phase3_deep_learning/cnn_classifier.py            # LeNet on MNIST
+uv run python phase3_deep_learning/object_detection_concepts.py # Anchors, IoU, NMS
 
-# Run Image Convolution demo
-uv run python image_convolution.py  # Animated kernel + filter comparison!
-
-# Run Neural Network demo
-uv run python neural_network.py     # Watch decision boundary learn XOR!
-
-# Run CNN demo (PyTorch)
-uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
-
-# Run Feature Detection demo
-uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
-
-# Run Object Detection Concepts demo
-uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
-
-# Run DQN demo (Deep RL)
-uv run python dqn_cartpole.py  # Train DQN to balance CartPole!
+# Phase 4: Robotics ML
+uv run python phase4_robotics_ml/dqn_cartpole.py  # DQN on CartPole
 ```
 
 ---
@@ -282,18 +306,21 @@ uv run python dqn_cartpole.py  # Train DQN to balance CartPole!
 ## Learning Plan: What's Next
 
 ### Phase 2: Computer Vision Fundamentals ✅
+
 1. ~~**Image Convolutions & Filters**~~ — ✅ Complete
 2. ~~**Feature Detection**~~ — ✅ Complete (Harris corners, SIFT/ORB)
 3. ~~**Neural Network from Scratch**~~ — ✅ Complete
 
 ### Phase 3: Deep Learning for Vision ✅
-4. ~~**CNN for Image Classification**~~ — ✅ Complete (LeNet on MNIST)
-5. ~~**Object Detection**~~ — ✅ Complete (Anchors, IoU, NMS)
+
+1. ~~**CNN for Image Classification**~~ — ✅ Complete (LeNet on MNIST)
+2. ~~**Object Detection**~~ — ✅ Complete (Anchors, IoU, NMS)
 
 ### Phase 4: Advanced Robotics ML (in progress)
-6. ~~**Deep Q-Network (DQN)**~~ — ✅ Complete (CartPole, experience replay, target network)
-7. **Policy Gradients / Actor-Critic** — REINFORCE, A2C, continuous actions
-8. **SLAM Concepts** — Visual odometry, feature matching
+
+1. ~~**Deep Q-Network (DQN)**~~ — ✅ Complete (CartPole, experience replay, target network)
+2. **Policy Gradients / Actor-Critic** — REINFORCE, A2C, continuous actions
+3. **SLAM Concepts** — Visual odometry, feature matching
 
 ---
 

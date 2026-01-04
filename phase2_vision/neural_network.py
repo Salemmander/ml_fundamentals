@@ -494,8 +494,8 @@ def animate_decision_boundary(
     print("=" * 60)
 
     plt.ioff()
-    plt.savefig("neural_network_xor.png", dpi=150, bbox_inches="tight")
-    print("\nFigure saved to neural_network_xor.png")
+    plt.savefig("output/neural_network_xor.png", dpi=150, bbox_inches="tight")
+    print("\nFigure saved to output/neural_network_xor.png")
     plt.show()
 
 

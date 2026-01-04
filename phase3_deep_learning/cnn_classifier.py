@@ -600,20 +600,20 @@ def run_cnn_demo(
 
     # Plot training curves
     plot_training_history(history)
-    plt.savefig("cnn_training_curves.png", dpi=150, bbox_inches="tight")
+    plt.savefig("output/cnn_training_curves.png", dpi=150, bbox_inches="tight")
 
     # Visualize learned filters
     visualize_filters(model)
-    plt.savefig("cnn_learned_filters.png", dpi=150, bbox_inches="tight")
+    plt.savefig("output/cnn_learned_filters.png", dpi=150, bbox_inches="tight")
 
     # Show predictions
     show_predictions(model, test_loader, device)
-    plt.savefig("cnn_predictions.png", dpi=150, bbox_inches="tight")
+    plt.savefig("output/cnn_predictions.png", dpi=150, bbox_inches="tight")
 
     print("Figures saved:")
-    print("  - cnn_training_curves.png")
-    print("  - cnn_learned_filters.png")
-    print("  - cnn_predictions.png")
+    print("  - output/cnn_training_curves.png")
+    print("  - output/cnn_learned_filters.png")
+    print("  - output/cnn_predictions.png")
 
     plt.ioff()
     plt.show()

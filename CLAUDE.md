@@ -24,18 +24,26 @@ This is a personal learning project focused on machine learning fundamentals for
 
 ## Progress Summary
 See `README.md` for detailed progress. Completed so far:
-- ✅ 1D Kalman Filter (learner implemented: update step)
-- ✅ 2D Kalman Filter (learner implemented: predict step)
-- ✅ Q-Learning (learner implemented: ε-greedy action selection)
-- ✅ Linear Regression (learner implemented: full gradient descent training loop)
-- ✅ Image Convolutions (learner implemented: convolve2d + edge detection)
-- ✅ Neural Network MLP (learner implemented: forward pass + backpropagation)
+- ✅ Phase 1: Kalman Filters, Q-Learning, Linear Regression
+- ✅ Phase 2: Image Convolutions, Neural Network MLP, Feature Detection
+- ✅ Phase 3: CNN Classifier, Object Detection Concepts
+- ✅ Phase 4 (in progress): DQN
 
-## What's Next (Phase 3: Deep Learning for Vision)
-- CNN for Image Classification (PyTorch)
-- Object Detection concepts (YOLO/SSD)
+## What's Next (Phase 4: Advanced Robotics ML)
+- Policy Gradients / Actor-Critic
+- SLAM Concepts
+
+## Project Structure
+```
+ml_fundamentals/
+├── phase1_fundamentals/    # Kalman, Q-Learning, Linear Regression
+├── phase2_vision/          # Convolution, Neural Network, Feature Detection
+├── phase3_deep_learning/   # CNN, Object Detection
+├── phase4_robotics_ml/     # DQN, Policy Gradients
+└── output/                 # Generated visualizations (gitignored)
+```
 
 ## Environment
 - Python managed with `uv`
-- Run code with: `uv run python <script>.py`
-- Dependencies: numpy, matplotlib (see pyproject.toml)
+- Run code with: `uv run python phase1_fundamentals/kalman_filter.py`
+- Dependencies: numpy, matplotlib, torch, gymnasium (see pyproject.toml)

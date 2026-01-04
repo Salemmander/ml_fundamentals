@@ -484,8 +484,8 @@ def run_convolution_demo(image_size: int = 64) -> None:
     print("=" * 60)
 
     plt.ioff()
-    plt.savefig("convolution_filters.png", dpi=150, bbox_inches="tight")
-    print("\nFigure saved to convolution_filters.png")
+    plt.savefig("output/convolution_filters.png", dpi=150, bbox_inches="tight")
+    print("\nFigure saved to output/convolution_filters.png")
     plt.show()
 
 

@@ -394,8 +394,8 @@ def run_regression_demo(
     print("=" * 60)
 
     plt.ioff()
-    plt.savefig("linear_regression_result.png", dpi=150, bbox_inches="tight")
-    print("\nFigure saved to linear_regression_result.png")
+    plt.savefig("output/linear_regression_result.png", dpi=150, bbox_inches="tight")
+    print("\nFigure saved to output/linear_regression_result.png")
     plt.show()
 
 
