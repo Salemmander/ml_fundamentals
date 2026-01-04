@@ -15,6 +15,7 @@ Personal learning project for understanding core machine learning algorithms, wi
 | CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
 | Feature Detection | ✅ Complete | `feature_detection.py` | Harris corners, SIFT/ORB intro |
 | Object Detection Concepts | ✅ Complete | `object_detection_concepts.py` | Anchors, IoU, NMS |
+| DQN (Deep Q-Network) | ✅ Complete | `dqn_cartpole.py` | Function approximation, replay buffer, target network |
 
 ---
 
@@ -213,6 +214,31 @@ NMS: Non-Maximum Suppression — keep best, remove overlapping duplicates
 
 **What I implemented:** `generate_anchors()`, `compute_iou()`, `compute_iou_batch()`, `non_maximum_suppression()`
 
+### 9. DQN — Deep Q-Network (Deep Reinforcement Learning)
+**Question it answers:** "How do I learn to act in continuous state spaces?"
+
+**Key difference from Q-Learning:**
+```
+Q-Learning: Q-table[state, action] → value lookup
+DQN:        Neural network(state) → Q-values for all actions
+```
+
+**Core components:**
+```
+Replay Buffer: Store (s, a, r, s', done), sample random batches
+Target Network: Slowly-updated copy for stable TD targets
+TD Loss: MSE(Q(s,a), r + γ * max Q_target(s'))
+```
+
+**Key insights:**
+- Neural networks enable RL on continuous/high-dimensional states
+- Experience replay breaks correlation between consecutive samples
+- Target network prevents "moving target" instability
+- `gather()` selects Q(s, action_taken), `max()` selects best future action
+- Solved CartPole in ~350 episodes on CPU
+
+**What I implemented:** `ReplayBuffer` class, `select_action()`, `compute_td_loss()`, `soft_update_target()`
+
 ---
 
 ## Running the Code
@@ -246,6 +272,9 @@ uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
 
 # Run Object Detection Concepts demo
 uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
+
+# Run DQN demo (Deep RL)
+uv run python dqn_cartpole.py  # Train DQN to balance CartPole!
 ```
 
 ---
@@ -261,9 +290,10 @@ uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
 4. ~~**CNN for Image Classification**~~ — ✅ Complete (LeNet on MNIST)
 5. ~~**Object Detection**~~ — ✅ Complete (Anchors, IoU, NMS)
 
-### Phase 4: Advanced Robotics ML
-6. **Deep Reinforcement Learning** — DQN, Policy Gradients, PyBullet/MuJoCo
-7. **SLAM Concepts** — Visual odometry, feature matching
+### Phase 4: Advanced Robotics ML (in progress)
+6. ~~**Deep Q-Network (DQN)**~~ — ✅ Complete (CartPole, experience replay, target network)
+7. **Policy Gradients / Actor-Critic** — REINFORCE, A2C, continuous actions
+8. **SLAM Concepts** — Visual odometry, feature matching
 
 ---
 
@@ -292,6 +322,8 @@ uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
 - `opencv-python` — SIFT/ORB feature detection and matching
 - `torch` — Deep learning framework (Phase 3+)
 - `torchvision` — Datasets and transforms for computer vision
+- `gymnasium` — RL environments (CartPole, etc.)
+- `pygame` — Environment rendering
 
 Managed with `uv`. See `pyproject.toml` for details.
 
