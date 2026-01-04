@@ -6,16 +6,16 @@ Personal learning project for understanding core machine learning algorithms, wi
 
 | Algorithm | Status | File | Key Concept |
 |-----------|--------|------|-------------|
-| 1D Kalman Filter | ✅ Complete | `kalman_filter.py` | State estimation, predict-update cycle |
-| 2D Kalman Filter | ✅ Complete | `kalman_filter_2d.py` | Matrix formulation, estimating hidden state (velocity) |
-| Q-Learning | ✅ Complete | `q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
-| Linear Regression | ✅ Complete | `linear_regression.py` | Gradient descent, optimization fundamentals |
-| Image Convolutions | ✅ Complete | `image_convolution.py` | Filters, edge detection, CNN foundations |
-| Neural Network (MLP) | ✅ Complete | `neural_network.py` | Backpropagation from scratch |
-| CNN Image Classifier | ✅ Complete | `cnn_classifier.py` | PyTorch, LeNet on MNIST |
-| Feature Detection | ✅ Complete | `feature_detection.py` | Harris corners, SIFT/ORB intro |
-| Object Detection Concepts | ✅ Complete | `object_detection_concepts.py` | Anchors, IoU, NMS |
-| DQN (Deep Q-Network) | ✅ Complete | `dqn_cartpole.py` | Function approximation, replay buffer, target network |
+| 1D Kalman Filter | ✅ Complete | `phase1_fundamentals/kalman_filter.py` | State estimation, predict-update cycle |
+| 2D Kalman Filter | ✅ Complete | `phase1_fundamentals/kalman_filter_2d.py` | Matrix formulation, estimating hidden state (velocity) |
+| Q-Learning | ✅ Complete | `phase1_fundamentals/q_learning.py` | Reinforcement learning, Bellman equation, ε-greedy |
+| Linear Regression | ✅ Complete | `phase1_fundamentals/linear_regression.py` | Gradient descent, optimization fundamentals |
+| Image Convolutions | ✅ Complete | `phase2_vision/image_convolution.py` | Filters, edge detection, CNN foundations |
+| Neural Network (MLP) | ✅ Complete | `phase2_vision/neural_network.py` | Backpropagation from scratch |
+| CNN Image Classifier | ✅ Complete | `phase3_deep_learning/cnn_classifier.py` | PyTorch, LeNet on MNIST |
+| Feature Detection | ✅ Complete | `phase2_vision/feature_detection.py` | Harris corners, SIFT/ORB intro |
+| Object Detection Concepts | ✅ Complete | `phase3_deep_learning/object_detection_concepts.py` | Anchors, IoU, NMS |
+| DQN (Deep Q-Network) | ✅ Complete | `phase4_robotics_ml/dqn_cartpole.py` | Function approximation, replay buffer, target network |
 
 ---
 
@@ -248,33 +248,23 @@ TD Loss: MSE(Q(s,a), r + γ * max Q_target(s'))
 cd ml_fundamentals
 uv sync  # Install dependencies from pyproject.toml
 
-# Run Kalman Filter demos
-uv run python kalman_filter.py      # 1D: animated position tracking
-uv run python kalman_filter_2d.py   # 2D: velocity estimation
+# Phase 1: Fundamentals
+uv run python phase1_fundamentals/kalman_filter.py      # 1D Kalman Filter
+uv run python phase1_fundamentals/kalman_filter_2d.py   # 2D velocity estimation
+uv run python phase1_fundamentals/q_learning.py         # Q-Learning GridWorld
+uv run python phase1_fundamentals/linear_regression.py  # Gradient descent
 
-# Run Q-Learning demo
-uv run python q_learning.py         # Watch robot learn to navigate!
+# Phase 2: Computer Vision
+uv run python phase2_vision/image_convolution.py   # Convolution + edge detection
+uv run python phase2_vision/neural_network.py      # MLP from scratch (XOR)
+uv run python phase2_vision/feature_detection.py   # Harris + SIFT/ORB
 
-# Run Linear Regression demo
-uv run python linear_regression.py  # Watch gradient descent fit a line!
+# Phase 3: Deep Learning
+uv run python phase3_deep_learning/cnn_classifier.py            # LeNet on MNIST
+uv run python phase3_deep_learning/object_detection_concepts.py # Anchors, IoU, NMS
 
-# Run Image Convolution demo
-uv run python image_convolution.py  # Animated kernel + filter comparison!
-
-# Run Neural Network demo
-uv run python neural_network.py     # Watch decision boundary learn XOR!
-
-# Run CNN demo (PyTorch)
-uv run python cnn_classifier.py     # Train LeNet on MNIST digits!
-
-# Run Feature Detection demo
-uv run python feature_detection.py  # Harris corners + SIFT/ORB comparison!
-
-# Run Object Detection Concepts demo
-uv run python object_detection_concepts.py  # Anchors, IoU, NMS visualization!
-
-# Run DQN demo (Deep RL)
-uv run python dqn_cartpole.py  # Train DQN to balance CartPole!
+# Phase 4: Robotics ML
+uv run python phase4_robotics_ml/dqn_cartpole.py  # DQN on CartPole
 ```
 
 ---

@@ -31,7 +31,7 @@ import numpy as np
 from typing import List, Tuple
 
 # Reuse our convolution and Sobel kernels from image_convolution
-from image_convolution import convolve2d, gaussian_kernel, SOBEL_X, SOBEL_Y
+from phase2_vision.image_convolution import convolve2d, gaussian_kernel, SOBEL_X, SOBEL_Y
 
 
 # =============================================================================
@@ -534,15 +534,15 @@ def run_harris_demo() -> None:
     plt.ion()
 
     visualize_harris_detection(image, corners)
-    plt.savefig("harris_corners.png", dpi=150, bbox_inches="tight")
+    plt.savefig("output/harris_corners.png", dpi=150, bbox_inches="tight")
 
     visualize_response_interpretation(image)
-    plt.savefig("harris_interpretation.png", dpi=150, bbox_inches="tight")
+    plt.savefig("output/harris_interpretation.png", dpi=150, bbox_inches="tight")
 
     print()
     print("Figures saved:")
-    print("  - harris_corners.png")
-    print("  - harris_interpretation.png")
+    print("  - output/harris_corners.png")
+    print("  - output/harris_interpretation.png")
 
     plt.ioff()
     plt.show()
@@ -560,8 +560,8 @@ def run_feature_comparison_demo() -> None:
 
     plt.ion()
     visualize_feature_comparison(image)
-    plt.savefig("feature_comparison.png", dpi=150, bbox_inches="tight")
-    print("Saved: feature_comparison.png")
+    plt.savefig("output/feature_comparison.png", dpi=150, bbox_inches="tight")
+    print("Saved: output/feature_comparison.png")
     plt.ioff()
     plt.show()
 
@@ -586,8 +586,8 @@ def run_matching_demo() -> None:
 
     plt.ion()
     visualize_feature_matching(image1, image2, method="orb")
-    plt.savefig("feature_matching.png", dpi=150, bbox_inches="tight")
-    print("Saved: feature_matching.png")
+    plt.savefig("output/feature_matching.png", dpi=150, bbox_inches="tight")
+    print("Saved: output/feature_matching.png")
 
     plt.ioff()
     plt.show()

@@ -287,10 +287,7 @@ def run_filter_demo(animate: bool = True, delay: float = 0.3):
     plt.ioff()  # Turn off interactive mode
 
     # Save final result
-    plt.savefig(
-        "/home/salem/Documents/Projects/Learning/ml_fundamentals/kalman_demo.png",
-        dpi=150,
-    )
+    plt.savefig("output/kalman_demo.png", dpi=150)
 
     # Print summary statistics
     estimates = np.array(estimate_history)

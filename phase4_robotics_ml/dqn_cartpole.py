@@ -658,8 +658,8 @@ def visualize_training(
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig("dqn_training.png", dpi=150, bbox_inches="tight")
-    print("\nFigure saved to dqn_training.png")
+    plt.savefig("output/dqn_training.png", dpi=150, bbox_inches="tight")
+    print("\nFigure saved to output/dqn_training.png")
     plt.ioff()
     plt.show()
 
